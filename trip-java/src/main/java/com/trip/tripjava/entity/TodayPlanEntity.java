@@ -18,11 +18,12 @@ public class TodayPlanEntity {
     @Column(name = "today_no", nullable = false)
     private int today_no;
 
-    @ManyToOne
+    // (cascade = CascadeType.REMOVE) : 연관된 엔티티 삭제 시 함께 삭제 설정
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "contentid", referencedColumnName = "contentid")
     private TouristEntity contentid;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "planner_no", referencedColumnName = "planner_no")
     private PlannerEntity planner_no;
 
