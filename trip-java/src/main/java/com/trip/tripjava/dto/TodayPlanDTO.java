@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class TodayPlanDTO {
     private int today_no;
     private long contentid;
-    private String planner_no;
+    private long planner_no;
     private String today_date;
     private int today_seq;
 
