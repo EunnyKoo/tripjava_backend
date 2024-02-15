@@ -2,13 +2,18 @@ package com.trip.tripjava.service;
 
 import com.trip.tripjava.entity.UserEntity;
 import com.trip.tripjava.repository.UserRepository;
+import jakarta.persistence.Entity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     // 회원가입
     public UserEntity signup(UserEntity userEntity) {
@@ -17,5 +22,15 @@ public class UserService {
         }
 
         return userRepository.save(userEntity);
+    }
+
+    // 로그인
+    public UserEntity login(String id, String password) {
+        UserEntity user = userRepository.findById(id).get();
+
+        if(user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        }
+        return null;
     }
 }

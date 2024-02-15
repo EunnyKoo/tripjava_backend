@@ -2,6 +2,7 @@ package com.trip.tripjava.controller;
 
 import com.trip.tripjava.dto.UserDTO;
 import com.trip.tripjava.entity.UserEntity;
+import com.trip.tripjava.security.TokenProvider;
 import com.trip.tripjava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,11 @@ public class UserController {
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
-    @PostMapping("") // 회원가입
+    @Autowired
+    TokenProvider tokenProvider;
+
+    // 회원가입
+    @PostMapping("")
     public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
         try {
             UserEntity user = UserEntity.builder()
@@ -34,6 +39,30 @@ public class UserController {
 
             return ResponseEntity.ok().body("회원가입 성공");
         } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // 로그인
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO userDTO) {
+        try {
+            UserEntity user = userService.login(userDTO.getId(), userDTO.getPassword());
+
+            if(user == null) {
+                throw new RuntimeException("login failed");
+            }
+
+            String token = tokenProvider.create(user);
+
+            UserDTO responseUserDTO = UserDTO.builder()
+                    .email(user.getEmail())
+                    .nickname(user.getNickname())
+                    .id(user.getId())
+                    .token(token)
+                    .build();
+            return ResponseEntity.ok().body(responseUserDTO);
+        } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
