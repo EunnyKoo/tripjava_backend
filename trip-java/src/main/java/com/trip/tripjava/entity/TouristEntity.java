@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name="tourist")
 public class TouristEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "contentid")
     private long contentid;
 
@@ -36,8 +36,10 @@ public class TouristEntity {
     @Column(name = "firstimage")
     private String firstimage;
 
+    /*
     @Column(name = "overview")
     private String overview;
+    */
 
     @Column(name = "mapx")
     private String mapx;
@@ -55,6 +57,4 @@ public class TouristEntity {
     @Column(name = "cat3")
     private String cat3;
     */
-
-
 }
