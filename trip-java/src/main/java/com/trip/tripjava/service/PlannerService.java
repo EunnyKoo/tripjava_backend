@@ -28,7 +28,7 @@ public void selectDate(PlannerDTO plannerDTO) {
 
         PlannerEntity plannerEntity = PlannerEntity.builder()
                 .planner_startday(plannerDTO.getPlanner_startday())
-                .planner_startday(plannerDTO.getPlanner_endday())
+                .planner_endday(plannerDTO.getPlanner_endday())
 //                .planner_region(plannerDTO.getPlanner_region())
 //                .user(userEntity.getId())
                 .build();
