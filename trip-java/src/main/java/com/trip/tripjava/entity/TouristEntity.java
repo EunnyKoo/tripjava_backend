@@ -16,10 +16,10 @@ public class TouristEntity {
     @Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "contentid")
-    private long contentid;
+    private String contentid;
 
     @Column(name = "contenttypeid")
-    private int contenttypeid;
+    private String contenttypeid;
 
     @Column(name = "title")
     private String title;
