@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 @Table(name="planner")
 public class PlannerEntity {
     @Id
-    @Column(name = "planner_no",nullable = false, length = 255)
-    private String planner_no;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "planner_no", nullable = false)
+    private Long planner_no;
 
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id")
@@ -27,7 +28,7 @@ public class PlannerEntity {
     @Column(name = "planner_endday", nullable = false, length = 50)
     private String planner_endday;
 
-    @Column(name = "planner_region", nullable = false, length = 50)
+    @Column(name = "planner_region", nullable = true, length = 50)
     private String planner_region;
 
 }
