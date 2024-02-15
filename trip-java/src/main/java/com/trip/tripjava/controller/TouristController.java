@@ -1,6 +1,7 @@
 package com.trip.tripjava.controller;
 
 
+import com.trip.tripjava.dto.TouristDTO;
 import com.trip.tripjava.entity.TouristEntity;
 import com.trip.tripjava.service.TouristService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +18,9 @@ public class TouristController {
     @Autowired
     TouristService touristService;
     @PostMapping("/test")
-    // dto 바꾸기
-    public String postData(@RequestBody List<TouristEntity> touristEntities) {
-        log.info(touristEntities.toString());
-        touristService.creatData(touristEntities);
+    public String postData(@RequestBody TouristDTO touristDTO) {
+        log.warn("title: {}", touristDTO.getTitle());
+        // touristService.creatData(touristEntities);
         return "";
     }
 }
