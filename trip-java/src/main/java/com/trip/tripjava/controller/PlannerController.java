@@ -25,4 +25,10 @@ public class PlannerController {
     public void selectDate(@RequestBody PlannerDTO plannerDTO) {
         plannerService.selectDate(plannerDTO);
     }
+
+//    3. 저장된 날짜 삭제
+    @DeleteMapping("/deleteDate")
+    public void deleteDate(long planner_no) {
+        plannerService.deleteDate(planner_no);
+    }
 }
