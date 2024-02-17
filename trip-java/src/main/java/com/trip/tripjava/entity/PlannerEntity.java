@@ -16,7 +16,7 @@ public class PlannerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "planner_no", nullable = false)
-    private Long planner_no;
+    private long planner_no;
 
     @ManyToOne
     @JoinColumn(name = "id", referencedColumnName = "id")

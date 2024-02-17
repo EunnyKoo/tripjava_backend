@@ -21,14 +21,14 @@ public class PlannerController {
     }
 
 //    2. 시작날짜 종료날짜 지정
-    @PostMapping("/selectDate")
+    @PostMapping("")
     public void selectDate(@RequestBody PlannerDTO plannerDTO) {
         plannerService.selectDate(plannerDTO);
     }
 
 //    3. 저장된 날짜 삭제
-    @DeleteMapping("/deleteDate")
-    public void deleteDate(long planner_no) {
+    @DeleteMapping("")
+    public void deleteDate(@RequestParam long planner_no) {
         plannerService.deleteDate(planner_no);
     }
 }
