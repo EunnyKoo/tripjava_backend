@@ -7,10 +7,7 @@ import com.trip.tripjava.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -63,6 +60,26 @@ public class UserController {
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
         } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // 아이디 중복체크
+    @PostMapping("/check-id")
+    public ResponseEntity<?> duplicateCheckId(@RequestBody UserDTO userDTO) {
+        try {
+            return ResponseEntity.ok().body(userService.checkId(userDTO.getId()));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // 닉네임 중복체크
+    @PostMapping("/check-nickname")
+    public ResponseEntity<?> duplicateCheckNickname(@RequestBody UserDTO userDTO) {
+        try {
+            return ResponseEntity.ok().body(userService.checkNickname(userDTO.getNickname()));
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

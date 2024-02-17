@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -32,5 +34,19 @@ public class UserService {
             return user;
         }
         return null;
+    }
+
+    // 아이디 중복체크
+    public boolean checkId(String id) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if(user.isPresent()) return true;
+        return false;
+    }
+
+    // 닉네임 중복체크
+    public boolean checkNickname(String nickname) {
+        Optional<UserEntity> user = Optional.ofNullable(userRepository.findByNickname(nickname));
+        if(user.isPresent()) return true;
+        return false;
     }
 }
