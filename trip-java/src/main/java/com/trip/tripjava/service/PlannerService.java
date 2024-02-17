@@ -36,7 +36,7 @@ public void selectDate(PlannerDTO plannerDTO) {
         plannerRepository.save(plannerEntity);
     }
     public void deleteDate(long planner_no) {
-        PlannerEntity plannerEntity = plannerRepository.findById(String.valueOf(planner_no))
+        PlannerEntity plannerEntity = plannerRepository.findById(planner_no)
                 .orElseThrow(()->new NoSuchElementException("plannerdate patch : planner_no is wrong"));
         plannerRepository.delete(plannerEntity);
         }
