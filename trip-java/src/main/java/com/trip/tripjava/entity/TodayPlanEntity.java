@@ -1,14 +1,12 @@
 package com.trip.tripjava.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Builder
 @Getter
+@Setter
 @Table(name = "today_plan")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,5 +29,5 @@ public class TodayPlanEntity {
     private String today_date;
 
     @Column(name = "today_seq", nullable = false)
-    private int today_seq;
+    private Integer today_seq;
 }
