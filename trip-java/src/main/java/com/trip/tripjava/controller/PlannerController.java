@@ -14,21 +14,30 @@ public class PlannerController {
     @Autowired
     PlannerService plannerService;
 
-//    1. 플래너 페이지 랜더
-    @GetMapping("")
-    public String plannerPage(){
-        return "planner";
-    }
-
-//    2. 시작날짜 종료날짜 지정
+//    1. 시작날짜 종료날짜 create
     @PostMapping("")
     public void selectDate(@RequestBody PlannerDTO plannerDTO) {
         plannerService.selectDate(plannerDTO);
     }
 
-//    3. 저장된 날짜 삭제
+//    2. 지정 날짜 update
+    @PatchMapping("")
+    public String updateDate(@RequestParam("planner_no") long planner_no,
+                             @RequestParam("planner_startday") String planner_startday,
+                             @RequestParam("planner_endday") String planner_endday) {
+        return plannerService.updateDate(planner_no, planner_startday, planner_endday);
+    }
+
+//    3. 저장된 날짜 search
+    @GetMapping("/search")
+    public List<Object[]> searchPlanner(@RequestParam("planner_no") long planner_no) {
+        return plannerService.searchDate(planner_no);
+    }
+
+
+//    4. 저장된 날짜 delete
     @DeleteMapping("")
-    public void deleteDate(@RequestParam long planner_no) {
+    public void deleteDate(@RequestParam("planner_no") long planner_no) {
         plannerService.deleteDate(planner_no);
     }
 }
