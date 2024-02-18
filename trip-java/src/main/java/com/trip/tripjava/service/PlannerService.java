@@ -19,25 +19,40 @@ public class PlannerService {
     @Autowired
     PlannerRepository plannerRepository;
 
-//    @Autowired
-//    UserRepository userRepository;
-//    Planner 페이지에서 시작일, 종료일 저장
-public void selectDate(PlannerDTO plannerDTO) {
-//    public void selectDate(PlannerDTO plannerDTO, Long id) {
-//        UserEntity userEntity = userRepository.findById(id);
-
+//    Planner 페이지에서 여행 시작일, 종료일 저장
+    public void selectDate(PlannerDTO plannerDTO) {
         PlannerEntity plannerEntity = PlannerEntity.builder()
                 .planner_startday(plannerDTO.getPlanner_startday())
                 .planner_endday(plannerDTO.getPlanner_endday())
-//                .planner_region(plannerDTO.getPlanner_region())
-//                .user(userEntity.getId())
                 .build();
-
         plannerRepository.save(plannerEntity);
     }
+
+//    여행 시작일, 종료일 수정 후 저장
+    public String updateDate(long planner_no, String planner_startday, String planner_endday){
+    PlannerEntity planner = plannerRepository.findById(planner_no)
+            .orElseThrow(()->new NoSuchElementException("저장된 정보가 없습니다."));
+
+    PlannerEntity updatePlanner = PlannerEntity.builder()
+            .planner_no(planner_no)
+            .planner_startday(planner_startday)
+            .planner_endday(planner_endday)
+            .build();
+
+    plannerRepository.save(updatePlanner);
+        return "Update success";
+    }
+
+//    저장된 여행 날짜 조회
+    public List<Object[]> searchDate(long planner_no) {
+        List<Object[]> result = plannerRepository.searchByPlanner_no(planner_no);
+        return result;
+    }
+
+//    저장된 여행 날짜 삭제
     public void deleteDate(long planner_no) {
         PlannerEntity plannerEntity = plannerRepository.findById(planner_no)
-                .orElseThrow(()->new NoSuchElementException("plannerdate patch : planner_no is wrong"));
+                .orElseThrow(()->new NoSuchElementException("삭제되지 않았습니다."));
         plannerRepository.delete(plannerEntity);
         }
 }
