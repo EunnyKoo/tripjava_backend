@@ -22,11 +22,10 @@ public class PlannerController {
 
 //    2. 지정 날짜 update
     @PatchMapping("")
-    public String updateDate(@RequestParam("planner_no") long planner_no,
-                             @RequestParam("planner_startday") String planner_startday,
-                             @RequestParam("planner_endday") String planner_endday) {
-        return plannerService.updateDate(planner_no, planner_startday, planner_endday);
+    public String updateDate(@RequestBody PlannerDTO plannerDTO){
+        return plannerService.updateDate(plannerDTO);
     }
+
 
 //    3. 저장된 날짜 search
     @GetMapping("/search")

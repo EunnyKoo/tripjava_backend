@@ -28,19 +28,19 @@ public class PlannerService {
         plannerRepository.save(plannerEntity);
     }
 
-//    여행 시작일, 종료일 수정 후 저장
-    public String updateDate(long planner_no, String planner_startday, String planner_endday){
-    PlannerEntity planner = plannerRepository.findById(planner_no)
+    public String updateDate(PlannerDTO plannerDTO) {
+        PlannerEntity planner = plannerRepository.findById(plannerDTO.getPlanner_no())
             .orElseThrow(()->new NoSuchElementException("저장된 정보가 없습니다."));
 
-    PlannerEntity updatePlanner = PlannerEntity.builder()
-            .planner_no(planner_no)
-            .planner_startday(planner_startday)
-            .planner_endday(planner_endday)
+        PlannerEntity updatePlanner = PlannerEntity.builder()
+            .planner_no(planner.getPlanner_no())
+            .planner_startday(plannerDTO.getPlanner_startday())
+            .planner_endday(plannerDTO.getPlanner_endday())
             .build();
 
     plannerRepository.save(updatePlanner);
         return "Update success";
+
     }
 
 //    저장된 여행 날짜 조회
