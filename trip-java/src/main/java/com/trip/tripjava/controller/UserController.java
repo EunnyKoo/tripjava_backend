@@ -83,4 +83,22 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // 사용자 정보 조회 (마이페이지)
+    @GetMapping("")
+    public ResponseEntity<?> getUserProfile(@RequestParam String id) {
+        try {
+            UserEntity user = userService.getUserInfo(id);
+
+            UserDTO responseUser = UserDTO.builder()
+                    .id(user.getId())
+                    .email(user.getEmail())
+                    .nickname(user.getNickname())
+                    .build();
+            return ResponseEntity.ok().body(responseUser);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

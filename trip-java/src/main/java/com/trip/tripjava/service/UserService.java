@@ -49,4 +49,12 @@ public class UserService {
         if(user.isPresent()) return true;
         return false;
     }
+
+    // 사용자 정보 조회 (마이페이지)
+    public UserEntity getUserInfo(String id) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if(user.isPresent()) return user.get();
+        return null;
+    }
+
 }
