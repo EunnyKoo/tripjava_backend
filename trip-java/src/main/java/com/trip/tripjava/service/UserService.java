@@ -49,4 +49,29 @@ public class UserService {
         if(user.isPresent()) return true;
         return false;
     }
+
+    // 사용자 정보 조회 (마이페이지)
+    public UserEntity getUserInfo(String id) {
+        Optional<UserEntity> user = userRepository.findById(id);
+        if(user.isPresent()) return user.get();
+        return null;
+    }
+
+    // 회원정보 수정
+    public UserEntity editUserInfo(UserEntity userEntity) {
+        if (userEntity == null) { // 입력받은 값이 null 일 경우
+            throw new RuntimeException("entity is wrong");
+        }
+        return userRepository.save(userEntity);
+    }
+
+    // 회원 탈퇴
+    public String deleteUser(String id, String email) {
+        UserEntity user = userRepository.findByIdAndEmail(id, email);
+        if (user == null) {
+            throw new RuntimeException("잘못된 입력입니다.");
+        }
+        userRepository.delete(user);
+        return "회원 탈퇴 되었습니다.";
+    }
 }
