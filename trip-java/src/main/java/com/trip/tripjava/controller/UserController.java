@@ -101,4 +101,29 @@ public class UserController {
         }
     }
 
+    // 회원정보 수정
+    @PatchMapping("")
+    public ResponseEntity<?> updateUserProfile(@RequestBody UserDTO userDTO) {
+        try {
+            UserEntity user = UserEntity.builder()
+                    .id(userDTO.getId())
+                    .password(passwordEncoder.encode(userDTO.getPassword()))
+                    .email(userDTO.getEmail())
+                    .nickname(userDTO.getNickname())
+                    .build();
+            userService.editUserInfo(user);
+
+            String token = tokenProvider.create(user);
+
+            UserDTO responseUserDTO = UserDTO.builder()
+                    .email(user.getEmail())
+                    .nickname(user.getNickname())
+                    .id(user.getId())
+                    .token(token)
+                    .build();
+            return ResponseEntity.ok().body(responseUserDTO);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

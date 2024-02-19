@@ -57,4 +57,11 @@ public class UserService {
         return null;
     }
 
+    // 회원정보 수정
+    public UserEntity editUserInfo(UserEntity userEntity) {
+        if (userEntity == null) { // 입력받은 값이 null 일 경우
+            throw new RuntimeException("entity is wrong");
+        }
+        return userRepository.save(userEntity);
+    }
 }
