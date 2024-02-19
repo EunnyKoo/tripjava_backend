@@ -7,7 +7,7 @@ import lombok.Getter;
 @Data
 @Builder
 public class TouristDTO {
-    private String contentid;
+    private int contentid;
     private String contenttypeid;
     private String title;
     private String addr1;

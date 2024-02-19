@@ -18,6 +18,7 @@ public class TouristEntity {
     @Column(name = "contentid")
     private String contentid;
 
+    // 관광타입(12:관광지, 32:숙박, 39:음식점)
     @Column(name = "contenttypeid")
     private String contenttypeid;
 
