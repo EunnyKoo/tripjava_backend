@@ -64,4 +64,14 @@ public class UserService {
         }
         return userRepository.save(userEntity);
     }
+
+    // 회원 탈퇴
+    public String deleteUser(String id, String email) {
+        UserEntity user = userRepository.findByIdAndEmail(id, email);
+        if (user == null) {
+            throw new RuntimeException("잘못된 입력입니다.");
+        }
+        userRepository.delete(user);
+        return "회원 탈퇴 되었습니다.";
+    }
 }

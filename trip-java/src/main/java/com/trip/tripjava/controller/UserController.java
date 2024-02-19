@@ -126,4 +126,15 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // 회원 탈퇴
+    @DeleteMapping("")
+    public ResponseEntity<?> deleteUser(@RequestBody UserDTO userDTO) {
+        try {
+            String msg = userService.deleteUser(userDTO.getId(), userDTO.getEmail());
+            return ResponseEntity.ok().body(msg);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
