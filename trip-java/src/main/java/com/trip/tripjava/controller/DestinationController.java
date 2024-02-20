@@ -23,6 +23,25 @@ public class DestinationController {
     @Autowired
     private TouristRepository touristRepository;
 
+    @GetMapping("/{addr1}")
+    public ResponseEntity<Map<String, List<TouristDTO>>> getDestinationInfoByAddress(@PathVariable String addr1) {
+        Map<String, List<TouristDTO>> response = new HashMap<>();
+
+        try {
+            // 관광지 엔티티 가져오기
+
+            List<TouristEntity> touristEntities = touristRepository.findByAddr1Contains(addr1);
+
+            // 엔티티를 DTO로 변환
+            List<TouristDTO> touristSpots = convertToDTO(touristEntities);
+            response.put("touristSpots", touristSpots);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
     @GetMapping("/{areacode}/{sigungucode}")
     public ResponseEntity<Map<String, List<TouristDTO>>> getDestinationInfo(@PathVariable String areacode, @PathVariable String sigungucode) {
         Map<String, List<TouristDTO>> response = new HashMap<>();
