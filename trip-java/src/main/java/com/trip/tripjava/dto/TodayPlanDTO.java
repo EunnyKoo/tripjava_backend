@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TodayPlanDTO {
     private int today_no;
-    private long contentid;
+    private String contentid;
     private long planner_no;
     private String today_date;
     private int today_seq;
