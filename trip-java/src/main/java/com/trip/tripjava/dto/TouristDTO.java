@@ -1,13 +1,14 @@
 package com.trip.tripjava.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
-@Data
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class TouristDTO {
-    private int contentid;
+    private String contentid;
     private String contenttypeid;
     private String title;
     private String addr1;

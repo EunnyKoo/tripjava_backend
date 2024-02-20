@@ -47,7 +47,7 @@ public class TouristController {
         areaCodeMap.put(38, "전남");
         areaCodeMap.put(39, "제주");
 
-        // 각 지역 코드에 대한 URL을 생성하고 데이터를 저장 (관광지, 음식점, 숙소 각 지역별 100개씩)
+        // 1부터 8까지의 지역 코드에 대한 URL을 생성하고 데이터를 저장 (관광지(12), 음식점(39), 숙소(32) 각 지역별 50개씩)
         for (int areaCode = 1; areaCode <= 8; areaCode++) {
             String url12 = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?serviceKey=8myOFHTKg5wG3cMyGkOevQcnl%2Fi8kjFcocILGvHrELWdcfS3zsjZwcd2UJtNwoGDB%2F7Hmn8gv8SWwwAsQga%2BEA%3D%3D&MobileOS=ETC&MobileApp=test&_type=json&areaCode=" + areaCode + "&contentTypeId=12&numOfRows=50";
             String url39 = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?serviceKey=8myOFHTKg5wG3cMyGkOevQcnl%2Fi8kjFcocILGvHrELWdcfS3zsjZwcd2UJtNwoGDB%2F7Hmn8gv8SWwwAsQga%2BEA%3D%3D&MobileOS=ETC&MobileApp=test&_type=json&areaCode=" + areaCode + "&contentTypeId=32&numOfRows=50";
@@ -56,7 +56,7 @@ public class TouristController {
             saveTouristData(url39, areaCodeMap.get(areaCode));
             saveTouristData(url57, areaCodeMap.get(areaCode));
         }
-        // 31부터 39까지의 지역 코드에 대한 URL을 생성하고 데이터를 저장 (관광지, 음식점, 숙소 각 지역별 100개씩)
+        // 31부터 39까지의 지역 코드에 대한 URL을 생성하고 데이터를 저장 (관관광지(12), 음식점(39), 숙소(32) 각 지역별 50개씩)
         for (int areaCode = 31; areaCode <= 39; areaCode++) {
             String url12 = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?serviceKey=8myOFHTKg5wG3cMyGkOevQcnl%2Fi8kjFcocILGvHrELWdcfS3zsjZwcd2UJtNwoGDB%2F7Hmn8gv8SWwwAsQga%2BEA%3D%3D&MobileOS=ETC&MobileApp=test&_type=json&areaCode=" + areaCode + "&contentTypeId=12&numOfRows=50";
             String url39 = "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?serviceKey=8myOFHTKg5wG3cMyGkOevQcnl%2Fi8kjFcocILGvHrELWdcfS3zsjZwcd2UJtNwoGDB%2F7Hmn8gv8SWwwAsQga%2BEA%3D%3D&MobileOS=ETC&MobileApp=test&_type=json&areaCode=" + areaCode + "&contentTypeId=32&numOfRows=50";
@@ -101,4 +101,6 @@ public class TouristController {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+
 }
