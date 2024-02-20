@@ -1,5 +1,6 @@
 package com.trip.tripjava.service;
 
+import com.trip.tripjava.dto.TodayPlanDTO;
 import com.trip.tripjava.entity.TodayPlanEntity;
 import com.trip.tripjava.repository.TodayPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.util.Map;
 
 @Service
 public class TodayPlanService {
-
     private final TodayPlanRepository todayPlanRepository;
 
     @Autowired
@@ -19,22 +19,49 @@ public class TodayPlanService {
         this.todayPlanRepository = todayPlanRepository;
     }
 
-    public TodayPlanEntity createTodayPlan(String today_date, long planner_no, List<String> contentid) {
-        TodayPlanEntity todayPlan = new TodayPlanEntity();
-        todayPlan.setToday_date(today_date);
+    public void createPlanData(TodayPlanDTO todayPlanDTO) {
+        TodayPlanEntity todayPlanEntity = convertToEntity(todayPlanDTO);
+        todayPlanRepository.save(todayPlanEntity);
+    }
 
-        Map<String, Integer> contentSeqMap = new HashMap<>();
+    public TodayPlanDTO getTodayPlanData(int today_no) {
+        TodayPlanEntity todayPlanEntity = todayPlanRepository.findById(today_no)
+                .orElseThrow(() -> new RuntimeException("데이터를 찾을 수 없습니다."));
+        return convertToDTO(todayPlanEntity);
+    }
 
-        for (int i = 0; i < contentid.size(); i++) {
-            String id = contentid.get(i);
-            int seq = i + 1;
-            contentSeqMap.put(id, seq);
-        }
+    public void updatePlanData(int today_no, TodayPlanDTO todayPlanDTO) {
+        TodayPlanEntity todayPlanEntity = todayPlanRepository.findById(today_no)
+                .orElseThrow(() -> new RuntimeException("데이터를 찾을 수 없습니다."));
+        updateEntity(todayPlanEntity, todayPlanDTO);
+        todayPlanRepository.save(todayPlanEntity);
+    }
 
-//        todayPlan.setToday_seq(contentSeqMap.);
+    public void deletePlanData(int today_no) {
+        TodayPlanEntity todayPlanEntity = todayPlanRepository.findById(today_no)
+                .orElseThrow(() -> new RuntimeException("데이터를 찾을 수 없습니다."));
+        todayPlanRepository.delete(todayPlanEntity);
+    }
 
+    private TodayPlanEntity convertToEntity(TodayPlanDTO todayPlanDTO) {
+        TodayPlanEntity todayPlanEntity = new TodayPlanEntity();
+        todayPlanEntity.setToday_no(todayPlanDTO.getToday_no());
+        todayPlanEntity.setToday_date(todayPlanDTO.getToday_date());
+        todayPlanEntity.setToday_seq(todayPlanDTO.getToday_seq());
+        return todayPlanEntity;
+    }
 
-        return todayPlanRepository.save(todayPlan);
+    private TodayPlanDTO convertToDTO(TodayPlanEntity todayPlanEntity) {
+        TodayPlanDTO todayPlanDTO = new TodayPlanDTO();
+        todayPlanDTO.setToday_no(todayPlanEntity.getToday_no());
+        todayPlanDTO.setToday_date(todayPlanEntity.getToday_date());
+        todayPlanDTO.setToday_seq(todayPlanEntity.getToday_seq());
+        return todayPlanDTO;
+    }
+
+    private void updateEntity(TodayPlanEntity todayPlanEntity, TodayPlanDTO todayPlanDTO) {
+        todayPlanEntity.setToday_date(todayPlanDTO.getToday_date());
+        todayPlanEntity.setToday_seq(todayPlanDTO.getToday_seq());
     }
 }
 

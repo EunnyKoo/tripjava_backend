@@ -3,6 +3,8 @@ package com.trip.tripjava.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Builder
 @Getter
@@ -28,6 +30,15 @@ public class TodayPlanEntity {
     @Column(name = "today_date", nullable = false)
     private String today_date;
 
+//    @Column(name = "created_date")
+//    private LocalDateTime createdDate;
+
+
     @Column(name = "today_seq", nullable = false)
-    private Integer today_seq;
+    private int today_seq;
+
+//    @PrePersist
+//    protected void onCreate() {
+//        createdDate = LocalDateTime.now();
+//    }
 }
