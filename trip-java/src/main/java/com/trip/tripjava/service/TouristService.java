@@ -18,6 +18,7 @@ public class TouristService {
         }
     }
 
+    //  두 지점 간의 거리를 계산하는 함수
     public double calculateDistance(double mapx, double mapy, String unit ) {
         double theta = mapy - 36.5907913004;
         double dist = Math.sin(Math.toRadians(mapx)) * Math.sin(Math.toRadians(126.4575227298)) + Math.cos(Math.toRadians(mapx)) * Math.cos(Math.toRadians(126.4575227298)) * Math.cos(Math.toRadians(theta));
