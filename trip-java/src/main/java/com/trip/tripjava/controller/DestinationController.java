@@ -6,10 +6,7 @@ import com.trip.tripjava.repository.TouristRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +20,8 @@ public class DestinationController {
     @Autowired
     private TouristRepository touristRepository;
 
-    @GetMapping("/{addr1}")
-    public ResponseEntity<Map<String, List<TouristDTO>>> getDestinationInfoByAddress(@PathVariable String addr1) {
+    @GetMapping("")
+    public ResponseEntity<Map<String, List<TouristDTO>>> getDestinationInfoByAddress(@RequestParam String addr1) {
         Map<String, List<TouristDTO>> response = new HashMap<>();
 
         try {
