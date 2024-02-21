@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,9 +18,5 @@ public class TripRouteDTO {
     private int days;
     private String planner_title;
     private AccommodationDTO accommodation;
-    private List<PlanDTO> plan1;
-    private List<PlanDTO> plan2;
-    private List<PlanDTO> plan3;
-    private List<PlanDTO> plan4;
-    private List<PlanDTO> plan5;
+    private List<PlanDTO> plans;
 }

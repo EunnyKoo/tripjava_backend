@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PlanDTO {
     private String contentid;
+    private int date;
+    private String today_date;
 }
