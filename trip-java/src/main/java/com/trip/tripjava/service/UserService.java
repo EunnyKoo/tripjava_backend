@@ -1,5 +1,6 @@
 package com.trip.tripjava.service;
 
+import com.trip.tripjava.dto.UserDTO;
 import com.trip.tripjava.entity.UserEntity;
 import com.trip.tripjava.repository.UserRepository;
 import jakarta.persistence.Entity;
@@ -57,12 +58,27 @@ public class UserService {
         return null;
     }
 
-    // 회원정보 수정
+    // 회원정보 수정 (비밀번호, 닉네임, 이메일)
     public UserEntity editUserInfo(UserEntity userEntity) {
         if (userEntity == null) { // 입력받은 값이 null 일 경우
             throw new RuntimeException("entity is wrong");
         }
         return userRepository.save(userEntity);
+    }
+
+    // 회원정보 수정 (닉네임, 이메일)
+    public UserEntity editNicknameAndEmail(UserDTO userDTO) {
+        Optional<UserEntity> user = userRepository.findById(userDTO.getId());
+        if (user.isPresent()) {
+            UserEntity updateUser = UserEntity.builder()
+                    .id(userDTO.getId())
+                    .password(user.get().getPassword())
+                    .nickname(userDTO.getNickname())
+                    .email(userDTO.getEmail())
+                    .build();
+            return userRepository.save(updateUser);
+        }
+        return null;
     }
 
     // 회원 탈퇴

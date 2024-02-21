@@ -101,7 +101,7 @@ public class UserController {
         }
     }
 
-    // 회원정보 수정
+    // 회원정보 수정 (비밀번호, 닉네임, 이메일)
     @PatchMapping("")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserDTO userDTO) {
         try {
@@ -119,6 +119,28 @@ public class UserController {
                     .email(user.getEmail())
                     .nickname(user.getNickname())
                     .id(user.getId())
+                    .token(token)
+                    .build();
+            return ResponseEntity.ok().body(responseUserDTO);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // 회원정보 수정 (닉네임, 이메일)
+    @PatchMapping("/nickname-email")
+    public ResponseEntity<?> updateNicknameAndEmail(@RequestBody UserDTO userDTO) {
+        try {
+            UserEntity updateUser = userService.editNicknameAndEmail(userDTO);
+            if (updateUser == null) {
+                return ResponseEntity.ok().body("존재하지 않는 유저입니다.");
+            }
+            String token = tokenProvider.create(updateUser);
+
+            UserDTO responseUserDTO = UserDTO.builder()
+                    .email(updateUser.getEmail())
+                    .nickname(updateUser.getNickname())
+                    .id(updateUser.getId())
                     .token(token)
                     .build();
             return ResponseEntity.ok().body(responseUserDTO);
