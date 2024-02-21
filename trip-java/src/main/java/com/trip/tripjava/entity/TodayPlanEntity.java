@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class TodayPlanEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "today_no", nullable = false)
     private int today_no;
 
@@ -27,7 +28,7 @@ public class TodayPlanEntity {
     @JoinColumn(name = "planner_no", referencedColumnName = "planner_no")
     private PlannerEntity planner_no;
 
-    @Column(name = "today_date", nullable = false)
+    @Column(name = "today_date")
     private String today_date;
 
 //    @Column(name = "created_date")
