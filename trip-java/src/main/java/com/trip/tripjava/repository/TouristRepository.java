@@ -15,7 +15,7 @@ public interface TouristRepository extends JpaRepository<TouristEntity, String> 
 
     // 주어진 위경도 주변의 숙소를 가져오는 메서드
     @Query(value = "SELECT * FROM tourist " +
-            "WHERE contenttypeid = 32 AND SQRT(POW(ABS(mapx - :mapx), 2) + POW(ABS(mapy - :mapy), 2)) * 111.195 <= 10",
+            "WHERE contenttypeid = 32 AND SQRT(POW(ABS(mapx - :mapx), 2) + POW(ABS(mapy - :mapy), 2)) * 111.195 <= 10 limit 10",
             nativeQuery = true)
     List<TouristEntity> findAccommodationsNearby(@Param("mapx") String mapx, @Param("mapy") String mapy);
 
