@@ -6,6 +6,7 @@ import com.trip.tripjava.repository.TodayPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +20,19 @@ public class TodayPlanService {
         this.todayPlanRepository = todayPlanRepository;
     }
 
-    public void createPlanData(TodayPlanDTO todayPlanDTO) {
-        TodayPlanEntity todayPlanEntity = convertToEntity(todayPlanDTO);
-        todayPlanRepository.save(todayPlanEntity);
+    public void createPlanData(int today_no, String contentid, long planner_no, String today_date) {
+        List<String> contentidList = Arrays.asList(contentid.split(","));
+        int seq = 1;
+        for (String id : contentidList) {
+            TodayPlanDTO todayPlanDTO = new TodayPlanDTO();
+            todayPlanDTO.setToday_no(today_no);
+            todayPlanDTO.setContentid(contentid);
+            todayPlanDTO.setPlanner_no(planner_no);
+            todayPlanDTO.setToday_date(today_date);
+            TodayPlanEntity todayPlanEntity = convertToEntity(todayPlanDTO);
+            todayPlanEntity.setToday_seq(seq++);
+            todayPlanRepository.save(todayPlanEntity);
+        }
     }
 
     public TodayPlanDTO getTodayPlanData(int today_no) {

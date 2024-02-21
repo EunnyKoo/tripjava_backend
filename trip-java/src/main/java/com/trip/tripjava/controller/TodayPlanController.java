@@ -22,8 +22,8 @@ public class TodayPlanController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createTodayPlanData(@RequestBody TodayPlanDTO todayPlanDTO) {
-        todayPlanService.createPlanData(todayPlanDTO);
+    public ResponseEntity<String> createTodayPlanData(@RequestParam int today_no, @RequestParam String contentid, @RequestParam long planner_no, @RequestParam String today_date) {
+        todayPlanService.createPlanData(today_no, contentid, planner_no, today_date);
         return ResponseEntity.ok("데이터 생성 완료");
     }
 
