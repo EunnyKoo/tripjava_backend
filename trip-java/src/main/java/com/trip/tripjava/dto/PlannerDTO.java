@@ -13,5 +13,5 @@ public class PlannerDTO {
     private long planner_no;
     private String planner_startday;
     private String planner_endday;
-//    private String planner_region;
+    private String planner_title;
 }

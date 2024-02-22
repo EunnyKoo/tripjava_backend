@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -54,5 +55,23 @@ public class PlannerService {
         PlannerEntity plannerEntity = plannerRepository.findById(planner_no)
                 .orElseThrow(()->new NoSuchElementException("삭제되지 않았습니다."));
         plannerRepository.delete(plannerEntity);
+    }
+
+    // 플래너 조회 (마이페이지)
+    public List<PlannerDTO> getPlanners(String id) {
+        List<PlannerEntity> planners = plannerRepository.findByUser_Id(id);
+        List<PlannerDTO> plannerDTOS = new ArrayList<>();
+
+        for (PlannerEntity planner : planners) {
+            PlannerDTO plannerDTO = PlannerDTO.builder()
+                    .planner_no(planner.getPlanner_no())
+                    .planner_startday(planner.getPlanner_startday())
+                    .planner_endday(planner.getPlanner_endday())
+                    .planner_title(planner.getPlanner_region())
+                    .build();
+            plannerDTOS.add(plannerDTO);
         }
+
+        return plannerDTOS;
+    }
 }
