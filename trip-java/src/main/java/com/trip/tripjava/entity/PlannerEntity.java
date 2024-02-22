@@ -28,7 +28,7 @@ public class PlannerEntity {
     @Column(name = "planner_endday", nullable = false, length = 50)
     private String planner_endday;
 
-    @Column(name = "planner_region", nullable = true, length = 50)
-    private String planner_region;
+    @Column(name = "planner_title", nullable = true, length = 50)
+    private String planner_title;
 
 }
