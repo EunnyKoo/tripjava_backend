@@ -19,7 +19,6 @@ public class TodayPlanEntity {
     @Column(name = "today_no", nullable = false)
     private int today_no;
 
-    // (cascade = CascadeType.REMOVE) : 연관된 엔티티 삭제 시 함께 삭제 설정
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "contentid", referencedColumnName = "contentid")
     private TouristEntity contentid;
@@ -31,15 +30,6 @@ public class TodayPlanEntity {
     @Column(name = "today_date")
     private String today_date;
 
-//    @Column(name = "created_date")
-//    private LocalDateTime createdDate;
-
-
     @Column(name = "today_type", nullable = false)
     private int today_type;
-
-//    @PrePersist
-//    protected void onCreate() {
-//        createdDate = LocalDateTime.now();
-//    }
 }
