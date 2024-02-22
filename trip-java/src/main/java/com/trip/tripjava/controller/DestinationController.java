@@ -39,6 +39,29 @@ public class DestinationController {
         }
     }
 
+    // 숙소 주변의 식당과 관광지 가져오기
+    @GetMapping("/nearby")
+    public ResponseEntity<Map<String, List<TouristDTO>>> getNearbyInfo(@RequestParam String mapx, @RequestParam String mapy) {
+        Map<String, List<TouristDTO>> response = new HashMap<>();
+
+        try {
+            // 숙소 주변의 식당 가져오기
+            List<TouristEntity> restaurantEntities = touristRepository.findRestaurantsNearby(mapx, mapy);
+            List<TouristDTO> restaurants = convertToDTO(restaurantEntities);
+            response.put("restaurants", restaurants);
+
+            // 숙소 주변의 관광지 가져오기
+            List<TouristEntity> touristEntities = touristRepository.findTouristSpotsNearby(mapx, mapy);
+            List<TouristDTO> touristSpots = convertToDTO(touristEntities);
+            response.put("touristSpots", touristSpots);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+
     // 주소 근처 식당, 관광지, 숙소 가져오기
     @GetMapping("")
     public ResponseEntity<Map<String, List<TouristDTO>>> getDestinationInfoByAddress(@RequestParam String addr1) {
