@@ -19,7 +19,7 @@ public class PlannerEntity {
     private long planner_no;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "userid", referencedColumnName = "id")
     private UserEntity user;
 
     @Column(name = "planner_startday", nullable = false, length = 50)
