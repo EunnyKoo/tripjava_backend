@@ -19,5 +19,5 @@ public class TodayPlanDTO {
     private String contentid;
     private long planner_no;
     private String today_date;
-    private int today_seq;
+    private int today_type;
 }

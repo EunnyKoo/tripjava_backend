@@ -32,7 +32,7 @@ public class TripRouteService {
         PlannerEntity createPlanner = PlannerEntity.builder()
                 .planner_startday(tripRouteDTO.getStart_day())
                 .planner_endday(tripRouteDTO.getEnd_day())
-                .planner_region(tripRouteDTO.getPlanner_title())
+                .planner_title(tripRouteDTO.getPlanner_title())
                 .user(userRepository.findById(tripRouteDTO.getUserid()).get())
                 .build();
         PlannerEntity planner = plannerRepository.save(createPlanner);
@@ -41,7 +41,7 @@ public class TripRouteService {
             TodayPlanEntity todayPlan = TodayPlanEntity.builder()
                     .contentid(touristRepository.findById(plan.getContentid()).get())
                     .planner_no(planner)
-                    .today_seq(plan.getType())
+                    .today_type(plan.getType())
                     .build();
 
             // 확인 로그

@@ -30,7 +30,7 @@ public class TodayPlanService {
             todayPlanDTO.setPlanner_no(planner_no);
             todayPlanDTO.setToday_date(today_date);
             TodayPlanEntity todayPlanEntity = convertToEntity(todayPlanDTO);
-            todayPlanEntity.setToday_seq(seq++);
+            todayPlanEntity.setToday_type(seq++);
             todayPlanRepository.save(todayPlanEntity);
         }
     }
@@ -58,7 +58,7 @@ public class TodayPlanService {
         TodayPlanEntity todayPlanEntity = new TodayPlanEntity();
         todayPlanEntity.setToday_no(todayPlanDTO.getToday_no());
         todayPlanEntity.setToday_date(todayPlanDTO.getToday_date());
-        todayPlanEntity.setToday_seq(todayPlanDTO.getToday_seq());
+        todayPlanEntity.setToday_type(todayPlanDTO.getToday_type());
         return todayPlanEntity;
     }
 
@@ -66,13 +66,13 @@ public class TodayPlanService {
         TodayPlanDTO todayPlanDTO = new TodayPlanDTO();
         todayPlanDTO.setToday_no(todayPlanEntity.getToday_no());
         todayPlanDTO.setToday_date(todayPlanEntity.getToday_date());
-        todayPlanDTO.setToday_seq(todayPlanEntity.getToday_seq());
+        todayPlanDTO.setToday_type(todayPlanEntity.getToday_type());
         return todayPlanDTO;
     }
 
     private void updateEntity(TodayPlanEntity todayPlanEntity, TodayPlanDTO todayPlanDTO) {
         todayPlanEntity.setToday_date(todayPlanDTO.getToday_date());
-        todayPlanEntity.setToday_seq(todayPlanDTO.getToday_seq());
+        todayPlanEntity.setToday_type(todayPlanDTO.getToday_type());
     }
 }
 

@@ -35,8 +35,8 @@ public class TodayPlanEntity {
 //    private LocalDateTime createdDate;
 
 
-    @Column(name = "today_seq", nullable = false)
-    private int today_seq;
+    @Column(name = "today_type", nullable = false)
+    private int today_type;
 
 //    @PrePersist
 //    protected void onCreate() {

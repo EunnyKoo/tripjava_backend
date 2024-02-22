@@ -67,7 +67,7 @@ public class PlannerService {
                     .planner_no(planner.getPlanner_no())
                     .planner_startday(planner.getPlanner_startday())
                     .planner_endday(planner.getPlanner_endday())
-                    .planner_title(planner.getPlanner_region())
+                    .planner_title(planner.getPlanner_title())
                     .build();
             plannerDTOS.add(plannerDTO);
         }
