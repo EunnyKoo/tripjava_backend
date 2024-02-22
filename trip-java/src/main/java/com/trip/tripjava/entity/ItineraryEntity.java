@@ -20,19 +20,19 @@ public class ItineraryEntity {
     @JoinColumn(name = "today_no", referencedColumnName = "today_no")
     private TodayPlanEntity today_no;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "start_time", nullable = true)
     private String start_time;
 
-    @Column(name = "end_time", nullable = false)
+    @Column(name = "end_time", nullable = true)
     private String end_time;
 
-    @Column(name = "memo", nullable = false)
+    @Column(name = "memo", nullable = true)
     private String memo;
 
-    @Column(name = "planner_title", nullable = false)
+    @Column(name = "planner_title", nullable = true)
     private String planner_title;
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = true)
     private String price;
 
 }

@@ -1,9 +1,12 @@
 package com.trip.tripjava.service;
 
+import com.trip.tripjava.entity.ItineraryEntity;
 import com.trip.tripjava.repository.ItineraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class ItineraryService {
@@ -15,5 +18,7 @@ public class ItineraryService {
         this.itineraryRepository = itineraryRepository;
     }
 
-
+    public ItineraryEntity saveItinerary(ItineraryEntity itinerary) {
+        return itineraryRepository.save(itinerary);
+    }
 }
