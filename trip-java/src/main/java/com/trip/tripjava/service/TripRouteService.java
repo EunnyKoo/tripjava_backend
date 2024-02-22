@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +57,7 @@ public class TripRouteService {
         return "여행경로가 저장되었습니다.";
     }
 
-   // 여행 경로 확인
+    // 여행 경로 확인
     public TripRouteDTO viewTripRoute(long plannerId) {
         // 플래너 ID를 기반으로 해당 플래너를 조회합니다.
         PlannerEntity plannerEntity = plannerRepository.findById(plannerId).orElse(null);
@@ -64,10 +66,13 @@ public class TripRouteService {
             return null;
         }
 
-        // 플래너에 속한 일정들을 조회합니다.
+        // Calculate the number of days
+        LocalDate startDate = LocalDate.parse(plannerEntity.getPlanner_startday());
+        LocalDate endDate = LocalDate.parse(plannerEntity.getPlanner_endday());
+        int days = Period.between(startDate, endDate).getDays()+1;
+
         List<TodayPlanEntity> todayPlanEntities = todayPlanRepository.findByPlannerNo(plannerEntity.getPlanner_no());
 
-        // PlanDTO 리스트를 생성합니다.
         List<PlanDTO> planDTOList = todayPlanEntities.stream().map(todayPlanEntity -> {
             PlanDTO planDTO = new PlanDTO();
             planDTO.setContentid(todayPlanEntity.getContentid().getContentid());
@@ -75,11 +80,12 @@ public class TripRouteService {
             return planDTO;
         }).collect(Collectors.toList());
 
-        // TripRouteDTO 객체를 생성하여 데이터를 설정합니다.
+
         TripRouteDTO tripRouteDTO = new TripRouteDTO();
         tripRouteDTO.setPlanner_title(plannerEntity.getPlanner_title());
         tripRouteDTO.setStart_day(plannerEntity.getPlanner_startday());
         tripRouteDTO.setEnd_day(plannerEntity.getPlanner_endday());
+        tripRouteDTO.setDays(days);
         tripRouteDTO.setUserid(plannerEntity.getUser().getId());
         tripRouteDTO.setPlans(planDTOList);
 
