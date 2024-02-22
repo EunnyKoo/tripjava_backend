@@ -16,7 +16,7 @@ public class TripRouteDTO {
     private String start_day;
     private String end_day;
     private int days;
+    private String userid;
     private String planner_title;
-    private AccommodationDTO accommodation;
     private List<PlanDTO> plans;
 }
