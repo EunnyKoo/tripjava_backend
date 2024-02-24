@@ -13,6 +13,7 @@ import lombok.*;
 public class ItineraryEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "itinerary_no", nullable = false)
     private long itinerary_no;
 
