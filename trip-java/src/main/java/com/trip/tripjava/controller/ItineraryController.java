@@ -21,25 +21,35 @@ public class ItineraryController {
     public ItineraryController(ItineraryService itineraryService) {
         this.itineraryService = itineraryService;
     }
-
+    
+    // itinerary 추가하기
     @PostMapping("/add")
     public ResponseEntity<ItineraryEntity> addItinerary(@RequestBody ItineraryEntity itinerary) {
         ItineraryEntity savedItinerary = itineraryService.saveItinerary(itinerary);
         return new ResponseEntity<>(savedItinerary, HttpStatus.CREATED);
     }
 
-    // 사용하지 않는 메소드
-    @GetMapping("/")
+    // 전체 itinerary 불러오기 
+    @GetMapping("/select")
     public ResponseEntity<List<ItineraryEntity>> getAllItineraries() {
-        List<ItineraryEntity> itineraries = itineraryService.getAllItineraries();
+        List<ItineraryEntity> itineraries = itineraryService.getAllItinerariesWithNativeQuery();
         return new ResponseEntity<>(itineraries, HttpStatus.OK);
     }
-
+    
+    // 해당 itinerary 불러오기
     @GetMapping("/{id}")
     public ResponseEntity<ItineraryEntity> getItineraryById(@PathVariable Long id) {
         ItineraryEntity itinerary = itineraryService.getItineraryById(id);
         return new ResponseEntity<>(itinerary, HttpStatus.OK);
     }
+
+
+    @DeleteMapping("del/{id}")
+    public ResponseEntity<String> deleteItineraryById(@PathVariable Long id) {
+        itineraryService.deleteItineraryById(id);
+        return new ResponseEntity<>("Itinerary deleted successfully", HttpStatus.OK);
+    }
+
 
 
 }
