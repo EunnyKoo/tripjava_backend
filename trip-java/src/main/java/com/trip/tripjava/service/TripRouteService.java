@@ -86,7 +86,12 @@ public class TripRouteService {
             TouristEntity touristEntity = todayPlanEntity.getContentid();
             TouristDTO touristDTO = new TouristDTO();
             touristDTO.setContentid(touristEntity.getContentid());
+            touristDTO.setContenttypeid(touristEntity.getContenttypeid());
+            touristDTO.setSigungucode(touristEntity.getSigungucode());
+            touristDTO.setFirstimage(touristEntity.getFirstimage());
+            touristDTO.setAreacode(touristEntity.getAreacode());
             touristDTO.setTitle(touristEntity.getTitle());
+            touristDTO.setAddr1(touristEntity.getAddr1());
             touristDTO.setMapx(touristEntity.getMapx());
             touristDTO.setMapy(touristEntity.getMapy());
             planDTO.setTourist(touristDTO);
