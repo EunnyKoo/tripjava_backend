@@ -17,5 +17,5 @@ public class TouristDTO {
     private String firstimage;
     private String mapx;
     private String mapy;
-    private double distance;
+    //private double distance;
 }
