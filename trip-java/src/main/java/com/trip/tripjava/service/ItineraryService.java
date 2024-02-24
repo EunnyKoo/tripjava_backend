@@ -1,5 +1,6 @@
 package com.trip.tripjava.service;
 
+import com.trip.tripjava.dto.ItineraryDTO;
 import com.trip.tripjava.entity.ItineraryEntity;
 import com.trip.tripjava.repository.ItineraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,8 @@ public class ItineraryService {
     public ItineraryEntity saveItinerary(ItineraryEntity itinerary) {
         return itineraryRepository.save(itinerary);
     }
+
+//    public ItineraryDTO viewItineraries(long itineraryno) {
+//        // itinerary ID를 기반으로 해당
+//    }
 }

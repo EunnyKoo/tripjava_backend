@@ -14,4 +14,5 @@ public class PlannerDTO {
     private String planner_startday;
     private String planner_endday;
     private String planner_title;
+    private TouristDTO tourist;
 }
