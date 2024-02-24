@@ -11,5 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ItineraryRepository extends JpaRepository<ItineraryEntity, Long> {
-
+    @Query(value = "SELECT * FROM itinerary", nativeQuery = true)
+    List<ItineraryEntity> findAllWithNativeQuery();
 }

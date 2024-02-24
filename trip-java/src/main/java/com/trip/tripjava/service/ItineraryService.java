@@ -27,9 +27,9 @@ public class ItineraryService {
         return itineraryRepository.save(itinerary);
     }
 
-    // 사용하지 않음
-    public List<ItineraryEntity> getAllItineraries() {
-        return itineraryRepository.findAll();
+    // 전체 itinerary 불러오기
+    public List<ItineraryEntity> getAllItinerariesWithNativeQuery() {
+        return itineraryRepository.findAllWithNativeQuery();
     }
 
     public ItineraryEntity getItineraryById(Long id) {
@@ -41,5 +41,23 @@ public class ItineraryService {
         }
     }
 
+
+    public void deleteItineraryById(Long id) {
+        Optional<ItineraryEntity> optionalItinerary = itineraryRepository.findById(id);
+        if (optionalItinerary.isPresent()) {
+            ItineraryEntity itinerary = optionalItinerary.get();
+
+            // itinerary에 연결된 today_plan 레코드를 모두 삭제
+            TodayPlanEntity todayPlan = itinerary.getToday_no();
+            if (todayPlan != null) {
+                todayPlanRepository.delete(todayPlan);
+            }
+
+            // itinerary 레코드 삭제
+            itineraryRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("Itinerary not found for id :: " + id);
+        }
+    }
 
 }
