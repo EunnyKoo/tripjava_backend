@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/itinerary")
 @Slf4j
@@ -26,18 +28,18 @@ public class ItineraryController {
         return new ResponseEntity<>(savedItinerary, HttpStatus.CREATED);
     }
 
-    // 생성된 itinerary 확인
-//    @GetMapping("/{itineraryno}")
-//    public ResponseEntity<ItineraryDTO> viewItineraries(@PathVariable long itineraryno){
-//        try{
-//            ItineraryDTO itineraryDTO = itineraryService.viewItineraries(itineraryno);
-//                if(itineraryDTO == null){
-//                    return ResponseEntity.notFound().build();
-//                }
-//        } catch (Exception e){
-//            log.error(e.getMessage());
-//        }
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//    }
+    // 사용하지 않는 메소드
+    @GetMapping("/")
+    public ResponseEntity<List<ItineraryEntity>> getAllItineraries() {
+        List<ItineraryEntity> itineraries = itineraryService.getAllItineraries();
+        return new ResponseEntity<>(itineraries, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ItineraryEntity> getItineraryById(@PathVariable Long id) {
+        ItineraryEntity itinerary = itineraryService.getItineraryById(id);
+        return new ResponseEntity<>(itinerary, HttpStatus.OK);
+    }
+
 
 }
