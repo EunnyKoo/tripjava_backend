@@ -13,15 +13,15 @@ public class ChecklistController {
     ChecklistService checklistService;
 
     // 체크리스트 확인
-    @GetMapping("planner/checklist/select")
-    public List<ChecklistEntity> getAllChecklists() {
-        return checklistService.getAllChecklists();
+    @GetMapping("planner/checklist/select/{planner_no}")
+    public List<ChecklistEntity> getAllChecklists(@PathVariable("planner_no") long planner_no) {
+        return checklistService.getAllChecklists(planner_no);
     }
 
     // 체크리스트 저장
-    @PostMapping("planner/checklist/add")
-    public ChecklistEntity createChecklistData(@RequestBody ChecklistEntity checklist) {
-        return checklistService.addChecklist(checklist);
+    @PostMapping("planner/checklist/add/{planner_no}")
+    public ChecklistEntity createChecklistData(@PathVariable("planner_no") long planner_no ,@RequestBody ChecklistEntity checklist) {
+        return checklistService.addChecklist(planner_no, checklist);
     }
 
     // 체크리스트 수정
