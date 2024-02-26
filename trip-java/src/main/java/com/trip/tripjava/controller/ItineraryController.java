@@ -43,13 +43,10 @@ public class ItineraryController {
         return new ResponseEntity<>(itinerary, HttpStatus.OK);
     }
 
-
-    @DeleteMapping("del/{id}")
+    @DeleteMapping("/del/{id}")
     public ResponseEntity<String> deleteItineraryById(@PathVariable Long id) {
         itineraryService.deleteItineraryById(id);
         return new ResponseEntity<>("Itinerary deleted successfully", HttpStatus.OK);
     }
-
-
 
 }

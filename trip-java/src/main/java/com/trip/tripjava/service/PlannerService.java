@@ -1,10 +1,11 @@
 package com.trip.tripjava.service;
 
 import com.trip.tripjava.dto.PlannerDTO;
+import com.trip.tripjava.entity.ChecklistEntity;
 import com.trip.tripjava.entity.PlannerEntity;
+import com.trip.tripjava.entity.TodayPlanEntity;
 import com.trip.tripjava.entity.UserEntity;
-import com.trip.tripjava.repository.PlannerRepository;
-import com.trip.tripjava.repository.UserRepository;
+import com.trip.tripjava.repository.*;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ import java.util.NoSuchElementException;
 public class PlannerService {
     @Autowired
     PlannerRepository plannerRepository;
+    TodayPlanRepository todayPlanRepository;
+    ChecklistRepository checklistRepository;
+    ItineraryRepository itineraryRepository;
 
 //    Planner 페이지에서 여행 시작일, 종료일 저장
     public void selectDate(PlannerDTO plannerDTO) {
@@ -51,11 +55,33 @@ public class PlannerService {
     }
 
 //    저장된 여행 날짜 삭제
-    public void deleteDate(long planner_no) {
-        PlannerEntity plannerEntity = plannerRepository.findById(planner_no)
-                .orElseThrow(()->new NoSuchElementException("삭제되지 않았습니다."));
-        plannerRepository.delete(plannerEntity);
-    }
+public void deleteDate(long planner_no) {
+    PlannerEntity plannerEntity = plannerRepository.findById(planner_no)
+            .orElseThrow(()->new NoSuchElementException("삭제되지 않았습니다."));
+
+    // plannerEntity에 연결된 itinerary 레코드들을 모두 삭제
+//        List<ItineraryEntity> itineraries = itineraryRepository.findAllByToday_Plan()
+//        itineraryRepository.deleteAll(itineraries);
+
+//        // plannerEntity에 연결된 today_plan 레코드들을 모두 조회
+//        List<TodayPlanEntity> todayPlans = todayPlanRepository.findByPlannerNo(planner_no);
+//
+//        // 각 TodayPlanEntity에 연결된 itinerary 레코드들을 모두 삭제
+//        for (TodayPlanEntity todayPlan : todayPlans) {
+//            List<ItineraryEntity> itineraries = itineraryRepository.findAllByToday(todayPlan);
+//            itineraryRepository.deleteAll(itineraries);
+//        }
+
+    // plannerEntity에 연결된 today_plan 레코드들을 모두 삭제
+    List<TodayPlanEntity> todayPlanEntities = todayPlanRepository.findByPlannerNo(planner_no);
+    todayPlanRepository.deleteAll(todayPlanEntities);
+
+    // plannerEntity에 연결된 checklist 레코드들을 모두 삭제
+    List<ChecklistEntity> checklists = checklistRepository.findAllByPlanner(plannerEntity);
+    checklistRepository.deleteAll(checklists);
+
+    plannerRepository.delete(plannerEntity);
+}
 
     // 플래너 조회 (마이페이지)
     public List<PlannerDTO> getPlanners(String id) {
