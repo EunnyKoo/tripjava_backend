@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,8 +32,18 @@ public class ItineraryService {
     }
 
     // 전체 itinerary 불러오기
-    public List<ItineraryEntity> getAllItinerariesWithNativeQuery() {
-        return itineraryRepository.findAllWithNativeQuery();
+    public List<ItineraryEntity> getAllItinerariesWithNativeQuery(Long plannerNo) {
+        // plannerNo 가 일치하는 today 리스트 모두 조회
+        List<TodayPlanEntity> todayPlanEntities = todayPlanRepository.findByPlannerNo(plannerNo);
+
+        // 위에 today 리스트에 해당하는 itinerary 다 가져와
+        List<ItineraryEntity> getItinerary = new ArrayList<>();
+        for (TodayPlanEntity today : todayPlanEntities) {
+            List<ItineraryEntity> temp = itineraryRepository.findAllByTodayNo(today.getToday_no());
+            getItinerary.addAll(temp);
+        }
+
+        return getItinerary;
     }
 
     public ItineraryEntity getItineraryById(Long id) {

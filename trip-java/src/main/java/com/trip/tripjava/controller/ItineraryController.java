@@ -30,10 +30,14 @@ public class ItineraryController {
     }
 
     // 전체 itinerary 불러오기 
-    @GetMapping("/select")
-    public ResponseEntity<List<ItineraryEntity>> getAllItineraries() {
-        List<ItineraryEntity> itineraries = itineraryService.getAllItinerariesWithNativeQuery();
-        return new ResponseEntity<>(itineraries, HttpStatus.OK);
+    @GetMapping("/select/{plannerNo}")
+    public ResponseEntity<?> getAllItineraries(@PathVariable Long plannerNo) {
+        try {
+            List<ItineraryEntity> itineraries = itineraryService.getAllItinerariesWithNativeQuery(plannerNo);
+            return new ResponseEntity<>(itineraries, HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     
     // 해당 itinerary 불러오기
