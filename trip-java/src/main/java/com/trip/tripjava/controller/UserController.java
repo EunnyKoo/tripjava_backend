@@ -116,6 +116,7 @@ public class UserController {
                     .password(passwordEncoder.encode(userDTO.getPassword()))
                     .email(userDTO.getEmail())
                     .nickname(userDTO.getNickname())
+                    .status("activated")
                     .build();
             userService.editUserInfo(user);
 
