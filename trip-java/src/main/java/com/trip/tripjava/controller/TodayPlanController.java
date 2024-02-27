@@ -44,6 +44,15 @@ public class TodayPlanController {
         todayPlanService.deletePlanData(today_no);
         return ResponseEntity.ok("데이터 삭제 완료");
     }
+
+    @GetMapping("/today-no/{plannerNo}/{days}")
+    public ResponseEntity<?> getStartTodayNo(@PathVariable Long plannerNo, @PathVariable int days) {
+        try {
+            return ResponseEntity.ok().body(todayPlanService.getStartTodayNo(plannerNo, days));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
 
 

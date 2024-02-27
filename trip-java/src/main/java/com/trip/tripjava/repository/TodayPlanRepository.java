@@ -13,5 +13,8 @@ import java.util.List;
 public interface TodayPlanRepository extends JpaRepository<TodayPlanEntity, Integer> {
     @Query(value = "SELECT * FROM today_plan WHERE planner_no = :planner_no", nativeQuery = true)
     List<TodayPlanEntity> findByPlannerNo(@Param("planner_no") Long plannerNo);
+
+    @Query(value = "SELECT * FROM today_plan WHERE today_type = :days ORDER BY today_no ASC LIMIT 1", nativeQuery = true)
+    TodayPlanEntity findByTodayType(@Param("days") Integer days);
 }
 

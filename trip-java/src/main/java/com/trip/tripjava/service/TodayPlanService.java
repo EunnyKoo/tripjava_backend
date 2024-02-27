@@ -6,10 +6,7 @@ import com.trip.tripjava.repository.TodayPlanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class TodayPlanService {
@@ -73,6 +70,17 @@ public class TodayPlanService {
     private void updateEntity(TodayPlanEntity todayPlanEntity, TodayPlanDTO todayPlanDTO) {
         todayPlanEntity.setToday_date(todayPlanDTO.getToday_date());
         todayPlanEntity.setToday_type(todayPlanDTO.getToday_type());
+    }
+
+    public List<Integer> getStartTodayNo(Long plannerNo, int days) {
+        List<Integer> nums = new ArrayList<>();
+
+        for (int i=1; i<=days; i++){
+            TodayPlanEntity todayPlan = todayPlanRepository.findByTodayType(i);
+            nums.add(todayPlan.getToday_no());
+        }
+
+        return nums;
     }
 }
 
