@@ -76,6 +76,7 @@ public class UserService {
                     .password(user.get().getPassword())
                     .nickname(userDTO.getNickname())
                     .email(userDTO.getEmail())
+                    .status(user.get().getStatus())
                     .build();
             return userRepository.save(updateUser);
         }
