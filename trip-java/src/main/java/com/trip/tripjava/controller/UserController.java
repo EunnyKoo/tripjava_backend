@@ -51,6 +51,11 @@ public class UserController {
                 throw new RuntimeException("login failed");
             }
 
+            // 사용자의 상태가 "deactivated"인지 확인하여 로그인을 거부합니다.
+            if ("deactivated".equals(user.getStatus())) {
+                throw new RuntimeException("계정이 비활성화되었습니다. 로그인이 거부됩니다.");
+            }
+
             String token = tokenProvider.create(user);
 
             UserDTO responseUserDTO = UserDTO.builder()
