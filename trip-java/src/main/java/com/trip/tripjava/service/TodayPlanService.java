@@ -76,7 +76,7 @@ public class TodayPlanService {
         List<Integer> nums = new ArrayList<>();
 
         for (int i=1; i<=days; i++){
-            TodayPlanEntity todayPlan = todayPlanRepository.findByTodayType(i);
+            TodayPlanEntity todayPlan = todayPlanRepository.findByTodayTypeAndPlannerNo(i, plannerNo);
             nums.add(todayPlan.getToday_no());
         }
 
