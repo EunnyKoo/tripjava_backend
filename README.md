@@ -44,7 +44,7 @@ Git, Github, Visual Studio
 ## Communication & Tool
 GIT, Github, Slack, Notion, Google Sheets
 
-### Distribution
+## Distribution
 Naver Cloud Platform
 
 ## API
