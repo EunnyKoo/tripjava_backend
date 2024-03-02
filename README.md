@@ -22,12 +22,12 @@
 
 |역할|이름|담당|✍️|
 |------|---|---|---|
-|Back-end(조장)|[권소희]()|백엔드|[회고록]()
-|Back-end|[정세은]()||[회고록]
-|Back-end|[황주리]()||[회고록]
-|Back-end|[구은현](https://github.com/EunnyKoo)||[회고록](https://velog.io/@eunkoo/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%AC%ED%96%89-%ED%94%8C%EB%9E%98%EB%84%88-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8A%B8%EB%A6%BD%EC%9E%90%EB%B0%94-%ED%9A%8C%EA%B3%A0%EB%A1%9D)|
-|Front-end|[나영혜]()||[회고록]
-|Front-end|[이도준준]()||[회고록]
+|Back-end(조장)|[권소희]()|ERD, DB제작, 회원 CRUD, 여행 경로 저장 API|[회고록]()
+|Back-end|[정세은]()|ERD, DB제작, 서버 배포, Checklist CRUD|[회고록]
+|Back-end|[황주리]()|ERD, DB제작, 회원 CRUD, 서버 배포, Itinerary CRUD |[회고록]
+|Back-end|[구은현](https://github.com/EunnyKoo)|ERD, DB제작, Checklist CRUD, Itinerary CRUD|[회고록](https://velog.io/@eunkoo/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%AC%ED%96%89-%ED%94%8C%EB%9E%98%EB%84%88-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8A%B8%EB%A6%BD%EC%9E%90%EB%B0%94-%ED%9A%8C%EA%B3%A0%EB%A1%9D)|
+|Front-end|[나영혜]()|여행 경로 지도|[회고록]
+|Front-end|[이도준준]()|회원가입, 로그인, 마이페이지, 일정표, 여행지 목록|[회고록]
 
 <br />
 
@@ -39,9 +39,7 @@ JavaScript, SCSS, Figma, Google Map
 Spring Boot, Java, MySQL, Postman
 
 ## Environment
-![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+Git, Github, Visual Studio
 
 ## Communication & Tool
 GIT, Github, Slack, Notion, Google Sheets
@@ -103,6 +101,7 @@ trip=java/
 <br />
 
 ## 📃 API 명세서
+<img width="776" alt="API명세서" src="https://github.com/EunnyKoo/tripjava_backend/assets/139302489/724657e0-4282-4f42-b322-10994c5ddfbb">
 
 <br />
 
@@ -114,5 +113,31 @@ trip=java/
 
 # 🖥️ 화면 구성 및 주요 기능
 ## 메인 페이지
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/59bfe6b8-062f-47f7-9a72-4457ef0ccc15)
+<br />
+
+## 여행 일자
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/b7e3eb81-e668-44a9-a94c-f95bb119d4b5)
+<br />
+
+## 지도
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/f37a6f54-8ad0-4ba4-88aa-d735d28d2fbf)
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/b0c142d3-0cce-4277-abc7-f436c690785d)
+
+<br />
+
+## 회원가입, 로그인, 회원정보 수정, 회원 탈퇴
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/11ce8325-6c14-43d2-9563-b4337a0d4512)
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/1038e1d8-00ff-462b-bd7e-b807a3306bb0)
+
+<br />
+
+## 마이페이지
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/5b966f04-d441-4eac-b36d-d839695040b1)
+
+<br />
+
+## 여행플래너
+![image](https://github.com/EunnyKoo/tripjava_backend/assets/139302489/4671d5d9-82b4-437e-875e-42c85c26ea80)
 
 <br />
