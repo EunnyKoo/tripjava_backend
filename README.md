@@ -23,7 +23,7 @@
 |역할|이름|담당|✍️|
 |------|---|---|---|
 |Back-end(조장)|[권소희]()|백엔드|[회고록]()
-|Back-end|[정세은](|||
+|Back-end|[정세은]()||[회고록]
 |Back-end|[황주리]()||[회고록]
 |Back-end|[구은현](https://github.com/EunnyKoo)||[회고록](https://velog.io/@eunkoo/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%AC%ED%96%89-%ED%94%8C%EB%9E%98%EB%84%88-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8A%B8%EB%A6%BD%EC%9E%90%EB%B0%94-%ED%9A%8C%EA%B3%A0%EB%A1%9D)|
 |Front-end|[나영혜]()||[회고록]
