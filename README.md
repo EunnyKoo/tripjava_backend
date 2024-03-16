@@ -27,7 +27,7 @@
 |Back-end|[황주리]()|ERD, DB제작, 회원 CRUD, 서버 배포, Itinerary CRUD |[회고록]
 |Back-end|[구은현](https://github.com/EunnyKoo)|ERD, DB제작, Checklist CRUD, Itinerary CRUD|[회고록](https://velog.io/@eunkoo/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%97%AC%ED%96%89-%ED%94%8C%EB%9E%98%EB%84%88-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%8A%B8%EB%A6%BD%EC%9E%90%EB%B0%94-%ED%9A%8C%EA%B3%A0%EB%A1%9D)|
 |Front-end|[나영혜]()|여행 경로 지도|[회고록]
-|Front-end|[이도준준]()|회원가입, 로그인, 마이페이지, 일정표, 여행지 목록|[회고록]
+|Front-end|[이도준]()|회원가입, 로그인, 마이페이지, 일정표, 여행지 목록|[회고록]
 
 <br />
 
